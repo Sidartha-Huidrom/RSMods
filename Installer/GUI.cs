@@ -91,23 +91,26 @@ namespace RS2014_Mod_Installer
         public static void IsVoid(string installLocation) // Anti-Piracy Check (False = Real, True = Pirated) || Modified from Beat Saber Mod Assistant
         {
             string reason = string.Empty;
-            bool fakeSteamApi = true;
-            try
-            {
-                X509Certificate2 cert = new X509Certificate2(X509Certificate.CreateFromSignedFile(Path.Combine(installLocation, "steam_api.dll")));
+            bool fakeSteamApi = false;
+            // bool fakeSteamApi = true;
+            // try
+            // {
+            //     X509Certificate2 cert = new X509Certificate2(X509Certificate.CreateFromSignedFile(Path.Combine(installLocation, "steam_api.dll")));
 
-                if (cert.GetNameInfo(X509NameType.SimpleName, false) == "Valve" || cert.Verify())
-                {
-                    fakeSteamApi = false;
-                }
-                else
-                {
-                    reason += "Invalid steam_api.dll certificate.";
-                }
-            }
-            catch { } // Fall-through = bad cert.
+            //     if (cert.GetNameInfo(X509NameType.SimpleName, false) == "Valve" || cert.Verify())
+            //     {
+            //         fakeSteamApi = false;
+            //     }
+            //     else
+            //     {
+            //         reason += "Invalid steam_api.dll certificate.";
+            //     }
+            // }
+            // catch { } // Fall-through = bad cert.
 
-            bool areCrackIndicationsPresent = File.Exists(Path.Combine(installLocation, "IGG-GAMES.COM.url")) || File.Exists(Path.Combine(installLocation, "SmartSteamEmu.ini")) || File.Exists(Path.Combine(installLocation, "GAMESTORRENT.CO.url")) || File.Exists(Path.Combine(installLocation, "Codex.ini")) || File.Exists(Path.Combine(installLocation, "Skidrow.ini")) || File.Exists(Path.Combine(installLocation, "steamclient.dll"));
+            // bool areCrackIndicationsPresent = File.Exists(Path.Combine(installLocation, "IGG-GAMES.COM.url")) || File.Exists(Path.Combine(installLocation, "SmartSteamEmu.ini")) || File.Exists(Path.Combine(installLocation, "GAMESTORRENT.CO.url")) || File.Exists(Path.Combine(installLocation, "Codex.ini")) || File.Exists(Path.Combine(installLocation, "Skidrow.ini")) || File.Exists(Path.Combine(installLocation, "steamclient.dll"));
+
+            bool areCrackIndicationsPresent = false;
 
             if (areCrackIndicationsPresent)
             {
